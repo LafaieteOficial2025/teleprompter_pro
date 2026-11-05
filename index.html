@@ -5,27 +5,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>TELEPROMPTER PRO — Soluções Profissionais para Palco, Live e Estúdio</title>
   <meta name="description" content="Teleprompter Pro — o teleprompter profissional para artistas, apresentadores e equipes de produção." />
-  <meta name="author" content="A2L Designer" />
-  <meta name="copyright" content="© 2025 A2L Designer. Todos os direitos reservados." />
-  <meta name="robots" content="noarchive" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
-
-  <!-- Se o JavaScript estiver desativado, a página não é exibida -->
-  <noscript>
-    <style>
-      .page { display: none !important; }
-      .noscript-msg {
-        display: block !important;
-        text-align: center;
-        padding: 80px 20px;
-        font-family: Arial, sans-serif;
-        color: #e8d48b;
-      }
-    </style>
-  </noscript>
-
   <style>
     :root {
       --bg: #0a1628;
@@ -46,18 +28,7 @@
       color: var(--white);
       min-height: 100vh;
       overflow-x: hidden;
-      -webkit-user-select: none;
-      -moz-user-select: none;
-      user-select: none;
-      -webkit-touch-callout: none;
     }
-
-    img, video {
-      -webkit-user-drag: none;
-      user-drag: none;
-    }
-
-    .noscript-msg { display: none; }
 
     body::before {
       content: "";
@@ -166,7 +137,6 @@
       width: 100%;
       height: auto;
       display: block;
-      pointer-events: none;
     }
 
     /* CTA */
@@ -315,7 +285,6 @@
     }
 
     .dev {
-      margin-top: 6px;
       opacity: 0.7;
     }
 
@@ -323,19 +292,9 @@
       .features { grid-template-columns: 1fr; max-width: 340px; }
       .btn-watch { width: 100%; max-width: 300px; }
     }
-
-    /* Impede impressão da página */
-    @media print {
-      body { display: none !important; }
-    }
   </style>
 </head>
 <body>
-
-  <div class="noscript-msg">
-    <h2>Ative o JavaScript para visualizar esta página.</h2>
-  </div>
-
   <div class="page">
     <header>
       <a class="logo" href="#">
@@ -355,7 +314,6 @@
           alt="TELEPROMPTER PRO"
           width="1840"
           height="980"
-          draggable="false"
         />
       </div>
     </div>
@@ -412,14 +370,12 @@
     </div>
 
     <footer>
-      <div>© 2025 Teleprompter Pro. Todos os direitos reservados.</div>
       <div class="dev">
         Desenvolvido por <strong>A2L Designer</strong>
       </div>
     </footer>
   </div>
 
-  <!-- FUNCIONAMENTO DO PLAYER -->
   <script>
     const btn = document.getElementById("btnPlay");
     const wrap = document.getElementById("videoWrap");
@@ -427,64 +383,13 @@
 
     btn.addEventListener("click", () => {
       wrap.classList.add("active");
-      player.play().catch(() => {});
+      // Tenta tocar automaticamente
+      player.play().catch(() => {
+        // Alguns navegadores bloqueiam autoplay — o usuário clica no play do player
+      });
+      // Rola até o vídeo
       wrap.scrollIntoView({ behavior: "smooth", block: "center" });
     });
   </script>
-
-  <!-- TRAVA ANTI-CÓPIA -->
-  <script>
-  (function () {
-    var LINK_ORIGINAL = "https://lafaieteoficial2025.github.io/teleprompter_pro/";
-
-    // Domínios onde a página pode funcionar.
-    // Se usar domínio próprio, adicione aqui. Ex.: "www.seusite.com.br"
-    // O "" (vazio) permite testar abrindo o arquivo direto no computador.
-    var permitidos = [
-      "lafaieteoficial2025.github.io",
-      "localhost",
-      "127.0.0.1",
-      ""
-    ];
-
-    // 1) TRAVA DE DOMÍNIO: cópia hospedada em outro site é redirecionada
-    if (permitidos.indexOf(location.hostname) === -1) {
-      document.documentElement.innerHTML = "";
-      location.replace(LINK_ORIGINAL);
-      return;
-    }
-
-    // 2) ANTI-IFRAME: impede que outro site exiba sua página dentro dele
-    try {
-      if (window.top !== window.self) {
-        window.top.location = window.self.location;
-      }
-    } catch (e) {
-      document.documentElement.innerHTML = "";
-      location.replace(LINK_ORIGINAL);
-      return;
-    }
-
-    // 3) Bloqueia clique direito, seleção, arrastar, copiar e recortar
-    ["contextmenu", "dragstart", "selectstart", "copy", "cut"].forEach(function (ev) {
-      document.addEventListener(ev, function (e) { e.preventDefault(); });
-    });
-
-    // 4) Bloqueia atalhos: F12, Ctrl+U/S/P/C/A, Ctrl+Shift+I/J/C
-    document.addEventListener("keydown", function (e) {
-      var k = (e.key || "").toLowerCase();
-      var bloqueado =
-        e.key === "F12" ||
-        ((e.ctrlKey || e.metaKey) && ["u", "s", "p", "c", "a"].indexOf(k) > -1) ||
-        ((e.ctrlKey || e.metaKey) && e.shiftKey && ["i", "j", "c"].indexOf(k) > -1);
-      if (bloqueado) {
-        e.preventDefault();
-        e.stopPropagation();
-        return false;
-      }
-    });
-  })();
-  </script>
-
 </body>
 </html>
