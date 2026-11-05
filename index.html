@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>TELEPROMPTER PRO — Soluções Profissionais para Palco, Live e Estúdio</title>
-  <meta name="description" content="Teleprompter Pro — o teleprompter profissional para artistas, apresentadores e equipes de produção. Modo Palco, importação de letras, timer e setlist." />
+  <meta name="description" content="Teleprompter Pro — o teleprompter profissional para artistas, apresentadores e equipes de produção." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
@@ -20,15 +20,7 @@
       --card: rgba(15, 28, 48, 0.85);
     }
 
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
-
-    html, body {
-      height: 100%;
-    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
 
     body {
       font-family: "Montserrat", system-ui, -apple-system, sans-serif;
@@ -38,7 +30,6 @@
       overflow-x: hidden;
     }
 
-    /* Background glow */
     body::before {
       content: "";
       position: fixed;
@@ -52,22 +43,21 @@
     }
 
     .page {
-      max-width: 1100px;
+      max-width: 980px;
       margin: 0 auto;
-      padding: 40px 24px 60px;
+      padding: 32px 20px 50px;
       display: flex;
       flex-direction: column;
       align-items: center;
       min-height: 100vh;
     }
 
-    /* Header / Logo */
     header {
       width: 100%;
       display: flex;
       align-items: center;
       justify-content: space-between;
-      margin-bottom: 36px;
+      margin-bottom: 28px;
       flex-wrap: wrap;
       gap: 12px;
     }
@@ -100,7 +90,7 @@
     }
 
     .logo-text strong {
-      font-size: 18px;
+      font-size: 17px;
       font-weight: 700;
       letter-spacing: 0.04em;
       color: var(--gold-light);
@@ -129,138 +119,175 @@
     /* Hero Image */
     .hero {
       width: 100%;
-      max-width: 920px;
       position: relative;
-      margin-bottom: 40px;
+      margin-bottom: 28px;
     }
 
     .hero-frame {
       position: relative;
-      border-radius: 16px;
+      border-radius: 14px;
       overflow: hidden;
       box-shadow:
         0 0 0 1px rgba(201, 162, 39, 0.25),
-        0 25px 60px rgba(0, 0, 0, 0.55),
-        0 0 80px rgba(201, 162, 39, 0.08);
+        0 20px 50px rgba(0, 0, 0, 0.5),
+        0 0 60px rgba(201, 162, 39, 0.08);
     }
 
     .hero-frame img {
       width: 100%;
       height: auto;
       display: block;
-      vertical-align: middle;
     }
 
-    /* CTA Section */
+    /* CTA */
     .cta-section {
       text-align: center;
       width: 100%;
-      max-width: 640px;
-      margin-bottom: 48px;
+      margin-bottom: 24px;
     }
 
     .cta-section h1 {
-      font-size: clamp(22px, 4vw, 32px);
+      font-size: clamp(20px, 4vw, 28px);
       font-weight: 700;
-      letter-spacing: -0.01em;
-      margin-bottom: 12px;
+      margin-bottom: 10px;
       color: var(--white);
     }
 
     .cta-section p {
-      font-size: 15px;
+      font-size: 14px;
       color: var(--muted);
-      line-height: 1.55;
-      margin-bottom: 28px;
+      line-height: 1.5;
+      margin-bottom: 22px;
+      max-width: 520px;
+      margin-left: auto;
+      margin-right: auto;
     }
 
     .btn-watch {
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      gap: 12px;
+      gap: 10px;
       background: linear-gradient(135deg, #d4af37 0%, #c9a227 40%, #a8841a 100%);
       color: #0a0a0a;
       font-family: inherit;
-      font-size: 16px;
+      font-size: 15px;
       font-weight: 700;
       letter-spacing: 0.06em;
       text-transform: uppercase;
       text-decoration: none;
-      padding: 18px 36px;
+      padding: 16px 32px;
       border-radius: 10px;
       border: none;
       cursor: pointer;
       box-shadow:
         0 4px 20px rgba(201, 162, 39, 0.45),
         0 1px 0 rgba(255, 255, 255, 0.25) inset;
-      transition: transform 0.2s ease, box-shadow 0.2s ease, filter 0.2s ease;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
     }
 
     .btn-watch:hover {
       transform: translateY(-2px);
-      box-shadow:
-        0 8px 28px rgba(201, 162, 39, 0.55),
-        0 1px 0 rgba(255, 255, 255, 0.3) inset;
-      filter: brightness(1.05);
-    }
-
-    .btn-watch:active {
-      transform: translateY(0);
+      box-shadow: 0 8px 28px rgba(201, 162, 39, 0.55);
     }
 
     .btn-watch svg {
-      width: 22px;
-      height: 22px;
-      flex-shrink: 0;
+      width: 20px;
+      height: 20px;
     }
 
-    .cta-note {
-      margin-top: 14px;
+    /* Video Player (hidden until button click) */
+    .video-wrap {
+      width: 100%;
+      max-width: 860px;
+      margin: 0 auto 36px;
+      display: none;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow:
+        0 0 0 1px rgba(201, 162, 39, 0.3),
+        0 20px 50px rgba(0, 0, 0, 0.55);
+      background: #000;
+    }
+
+    .video-wrap.active {
+      display: block;
+      animation: fadeIn 0.4s ease;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(12px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    .video-wrap video {
+      width: 100%;
+      height: auto;
+      display: block;
+      background: #000;
+    }
+
+    .video-actions {
+      display: flex;
+      gap: 10px;
+      justify-content: center;
+      padding: 12px;
+      background: rgba(0,0,0,0.7);
+      flex-wrap: wrap;
+    }
+
+    .video-actions a {
       font-size: 12px;
-      color: var(--muted);
+      color: var(--gold-light);
+      text-decoration: none;
+      padding: 6px 12px;
+      border: 1px solid rgba(201,162,39,0.35);
+      border-radius: 6px;
     }
 
-    /* Features row */
+    .video-actions a:hover {
+      background: rgba(201,162,39,0.15);
+    }
+
+    /* Features */
     .features {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
-      gap: 16px;
+      gap: 14px;
       width: 100%;
       max-width: 820px;
-      margin-bottom: 48px;
+      margin-bottom: 40px;
     }
 
     .feature {
       background: var(--card);
       border: 1px solid rgba(201, 162, 39, 0.18);
       border-radius: 12px;
-      padding: 20px 16px;
+      padding: 18px 14px;
       text-align: center;
-      backdrop-filter: blur(8px);
     }
 
     .feature-icon {
-      width: 44px;
-      height: 44px;
-      margin: 0 auto 12px;
+      width: 40px;
+      height: 40px;
+      margin: 0 auto 10px;
       border-radius: 50%;
       background: linear-gradient(145deg, #1a2438, #0d1520);
       border: 1px solid rgba(201, 162, 39, 0.35);
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 18px;
+      font-size: 16px;
       color: var(--gold-light);
     }
 
     .feature h3 {
-      font-size: 12px;
+      font-size: 11px;
       font-weight: 700;
       letter-spacing: 0.06em;
       text-transform: uppercase;
       color: var(--gold-light);
-      margin-bottom: 6px;
+      margin-bottom: 5px;
     }
 
     .feature p {
@@ -269,10 +296,9 @@
       line-height: 1.4;
     }
 
-    /* Footer */
     footer {
       margin-top: auto;
-      padding-top: 24px;
+      padding-top: 20px;
       text-align: center;
       font-size: 12px;
       color: var(--muted);
@@ -285,36 +311,14 @@
       text-decoration: none;
     }
 
-    footer a:hover {
-      text-decoration: underline;
-    }
-
     .dev {
-      margin-top: 8px;
+      margin-top: 6px;
       opacity: 0.7;
     }
 
-    /* Responsive */
     @media (max-width: 700px) {
-      .page {
-        padding: 24px 16px 40px;
-      }
-
-      .features {
-        grid-template-columns: 1fr;
-        max-width: 360px;
-      }
-
-      .btn-watch {
-        width: 100%;
-        max-width: 320px;
-        padding: 16px 24px;
-        font-size: 15px;
-      }
-
-      .cta-section h1 {
-        font-size: 22px;
-      }
+      .features { grid-template-columns: 1fr; max-width: 340px; }
+      .btn-watch { width: 100%; max-width: 300px; }
     }
   </style>
 </head>
@@ -335,7 +339,7 @@
       <div class="hero-frame">
         <img
           src="teleprompter-hero.png"
-          alt="TELEPROMPTER PRO — Soluções profissionais para palco, live e estúdio"
+          alt="TELEPROMPTER PRO"
           width="1840"
           height="980"
         />
@@ -346,26 +350,39 @@
       <h1>Conheça o Teleprompter Pro</h1>
       <p>
         Solução completa para artistas, apresentadores e equipes de produção.
-        Modo Palco, setlist, timer profissional e importação de letras.
+        Clique no botão abaixo para assistir a apresentação.
       </p>
 
-      <!-- BOTÃO PRINCIPAL — aponta para o vídeo no GitHub -->
-      <a
-        class="btn-watch"
-        href="https://github.com/LafaieteOficial2025/teleprompter_pro/raw/main/Apresenta%C3%A7%C3%A3o%20Teleprompter.mp4"
-        target="_blank"
-        rel="noopener noreferrer"
-      >
-        <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-          <path d="M8 5v14l11-7z"/>
-        </svg>
+      <button class="btn-watch" id="btnPlay" type="button">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
         Assistir Apresentação
-      </a>
-
-      <p class="cta-note">
-        Vídeo em alta qualidade · Abre direto no navegador ou player
-      </p>
+      </button>
     </section>
+
+    <!-- PLAYER EMBUTIDO — abre na página, sem baixar -->
+    <div class="video-wrap" id="videoWrap">
+      <video
+        id="player"
+        controls
+        playsinline
+        preload="metadata"
+        poster="teleprompter-hero.png"
+      >
+        <source
+          src="https://github.com/LafaieteOficial2025/teleprompter_pro/raw/main/Apresenta%C3%A7%C3%A3o%20Teleprompter.mp4"
+          type="video/mp4"
+        />
+        Seu navegador não suporta vídeo HTML5.
+      </video>
+      <div class="video-actions">
+        <a href="https://github.com/LafaieteOficial2025/teleprompter_pro/raw/main/Apresenta%C3%A7%C3%A3o%20Teleprompter.mp4" target="_blank" rel="noopener">
+          Baixar o vídeo
+        </a>
+        <a href="https://github.com/LafaieteOficial2025/teleprompter_pro" target="_blank" rel="noopener">
+          Ver no GitHub
+        </a>
+      </div>
+    </div>
 
     <div class="features">
       <div class="feature">
@@ -376,12 +393,12 @@
       <div class="feature">
         <div class="feature-icon">⏱</div>
         <h3>Timing e Leitura Perfeitos</h3>
-        <p>Velocidade ajustável, fonte grande e timer regressivo/progressivo.</p>
+        <p>Velocidade ajustável, fonte grande e timer profissional.</p>
       </div>
       <div class="feature">
         <div class="feature-icon">🔒</div>
         <h3>Confiança no Palco</h3>
-        <p>Modo Palco limpo, borda de segurança e Wake Lock para a tela não apagar.</p>
+        <p>Modo Palco limpo, borda de segurança e tela sempre ligada.</p>
       </div>
     </div>
 
@@ -396,5 +413,21 @@
       </div>
     </footer>
   </div>
+
+  <script>
+    const btn = document.getElementById("btnPlay");
+    const wrap = document.getElementById("videoWrap");
+    const player = document.getElementById("player");
+
+    btn.addEventListener("click", () => {
+      wrap.classList.add("active");
+      // Tenta tocar automaticamente
+      player.play().catch(() => {
+        // Alguns navegadores bloqueiam autoplay — o usuário clica no play do player
+      });
+      // Rola até o vídeo
+      wrap.scrollIntoView({ behavior: "smooth", block: "center" });
+    });
+  </script>
 </body>
 </html>
