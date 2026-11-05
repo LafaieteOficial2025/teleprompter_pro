@@ -1,175 +1,395 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Teleprompter Pro</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>TELEPROMPTER PRO — Soluções Profissionais para Palco, Live e Estúdio</title>
+  <meta name="description" content="Teleprompter Pro — o teleprompter profissional para artistas, apresentadores e equipes de produção." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
   <style>
-    * { margin: 0; padding: 0; box-sizing: border-box; }
+    :root {
+      --bg: #0a1628;
+      --bg-deep: #060e1a;
+      --gold: #c9a227;
+      --gold-light: #e8d48b;
+      --gold-dim: #8a7020;
+      --white: #f5f5f0;
+      --muted: #a0a8b8;
+      --card: rgba(15, 28, 48, 0.85);
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
 
     body {
-      font-family: Arial, Helvetica, sans-serif;
-      background: #0b0b0f;
-      color: #ffffff;
-      line-height: 1.6;
+      font-family: "Montserrat", system-ui, -apple-system, sans-serif;
+      background: var(--bg-deep);
+      color: var(--white);
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 80% 50% at 70% 40%, rgba(201, 162, 39, 0.12) 0%, transparent 55%),
+        radial-gradient(ellipse 60% 40% at 20% 80%, rgba(30, 60, 120, 0.25) 0%, transparent 50%),
+        var(--bg-deep);
+      z-index: -1;
+      pointer-events: none;
+    }
+
+    .page {
+      max-width: 980px;
+      margin: 0 auto;
+      padding: 32px 20px 50px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      min-height: 100vh;
     }
 
     header {
-      text-align: center;
-      padding: 60px 20px 30px;
-    }
-
-    header h1 {
-      font-size: 2.6rem;
-      margin-bottom: 10px;
-    }
-
-    header p {
-      font-size: 1.15rem;
-      color: #b5b5c3;
-      max-width: 700px;
-      margin: 0 auto;
-    }
-
-    .hero {
-      max-width: 1000px;
-      margin: 30px auto;
-      padding: 0 20px;
-    }
-
-    .hero img {
       width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 28px;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      text-decoration: none;
+      color: inherit;
+    }
+
+    .logo-icon {
+      width: 42px;
+      height: 42px;
+      border-radius: 50%;
+      background: linear-gradient(145deg, #2a2a2a, #0d0d0d);
+      border: 1px solid var(--gold-dim);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 20px;
+      box-shadow: 0 0 20px rgba(201, 162, 39, 0.25);
+    }
+
+    .logo-text {
+      display: flex;
+      flex-direction: column;
+      line-height: 1.15;
+    }
+
+    .logo-text strong {
+      font-size: 17px;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      color: var(--gold-light);
+    }
+
+    .logo-text span {
+      font-size: 10px;
+      font-weight: 500;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    .badge {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--gold);
+      border: 1px solid rgba(201, 162, 39, 0.4);
+      padding: 6px 14px;
+      border-radius: 100px;
+      background: rgba(201, 162, 39, 0.08);
+    }
+
+    /* Hero Image */
+    .hero {
+      width: 100%;
+      position: relative;
+      margin-bottom: 28px;
+    }
+
+    .hero-frame {
+      position: relative;
       border-radius: 14px;
+      overflow: hidden;
+      box-shadow:
+        0 0 0 1px rgba(201, 162, 39, 0.25),
+        0 20px 50px rgba(0, 0, 0, 0.5),
+        0 0 60px rgba(201, 162, 39, 0.08);
+    }
+
+    .hero-frame img {
+      width: 100%;
+      height: auto;
       display: block;
     }
 
-    section {
-      max-width: 1000px;
-      margin: 50px auto;
-      padding: 0 20px;
+    /* CTA */
+    .cta-section {
       text-align: center;
-    }
-
-    section h2 {
-      font-size: 1.9rem;
-      margin-bottom: 25px;
-    }
-
-    .video-box video {
       width: 100%;
-      max-width: 900px;
-      border-radius: 14px;
+      margin-bottom: 24px;
+    }
+
+    .cta-section h1 {
+      font-size: clamp(20px, 4vw, 28px);
+      font-weight: 700;
+      margin-bottom: 10px;
+      color: var(--white);
+    }
+
+    .cta-section p {
+      font-size: 14px;
+      color: var(--muted);
+      line-height: 1.5;
+      margin-bottom: 22px;
+      max-width: 520px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .btn-watch {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      background: linear-gradient(135deg, #d4af37 0%, #c9a227 40%, #a8841a 100%);
+      color: #0a0a0a;
+      font-family: inherit;
+      font-size: 15px;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      text-decoration: none;
+      padding: 16px 32px;
+      border-radius: 10px;
+      border: none;
+      cursor: pointer;
+      box-shadow:
+        0 4px 20px rgba(201, 162, 39, 0.45),
+        0 1px 0 rgba(255, 255, 255, 0.25) inset;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .btn-watch:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 28px rgba(201, 162, 39, 0.55);
+    }
+
+    .btn-watch svg {
+      width: 20px;
+      height: 20px;
+    }
+
+    /* Video Player (hidden until button click) */
+    .video-wrap {
+      width: 100%;
+      max-width: 860px;
+      margin: 0 auto 36px;
+      display: none;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow:
+        0 0 0 1px rgba(201, 162, 39, 0.3),
+        0 20px 50px rgba(0, 0, 0, 0.55);
       background: #000;
     }
 
+    .video-wrap.active {
+      display: block;
+      animation: fadeIn 0.4s ease;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(12px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    .video-wrap video {
+      width: 100%;
+      height: auto;
+      display: block;
+      background: #000;
+    }
+
+    /* Features */
     .features {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-      gap: 20px;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 14px;
+      width: 100%;
+      max-width: 820px;
+      margin-bottom: 40px;
     }
 
-    .card {
-      background: #16161d;
-      padding: 25px;
+    .feature {
+      background: var(--card);
+      border: 1px solid rgba(201, 162, 39, 0.18);
       border-radius: 12px;
-      border: 1px solid #25252f;
+      padding: 18px 14px;
+      text-align: center;
     }
 
-    .card h3 {
-      margin-bottom: 8px;
-      color: #4da3ff;
+    .feature-icon {
+      width: 40px;
+      height: 40px;
+      margin: 0 auto 10px;
+      border-radius: 50%;
+      background: linear-gradient(145deg, #1a2438, #0d1520);
+      border: 1px solid rgba(201, 162, 39, 0.35);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 16px;
+      color: var(--gold-light);
     }
 
-    .card p {
-      color: #b5b5c3;
-      font-size: 0.95rem;
+    .feature h3 {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--gold-light);
+      margin-bottom: 5px;
     }
 
-    .btn {
-      display: inline-block;
-      background: #25d366;
-      color: #fff;
-      text-decoration: none;
-      padding: 16px 40px;
-      border-radius: 50px;
-      font-size: 1.1rem;
-      font-weight: bold;
-      transition: 0.2s;
-    }
-
-    .btn:hover {
-      transform: scale(1.05);
-      background: #1ebe5b;
+    .feature p {
+      font-size: 12px;
+      color: var(--muted);
+      line-height: 1.4;
     }
 
     footer {
+      margin-top: auto;
+      padding-top: 20px;
       text-align: center;
-      padding: 40px 20px;
-      color: #70707d;
-      font-size: 0.85rem;
-      border-top: 1px solid #1c1c24;
-      margin-top: 60px;
+      font-size: 12px;
+      color: var(--muted);
+      width: 100%;
+      border-top: 1px solid rgba(255, 255, 255, 0.06);
     }
 
-    @media (max-width: 600px) {
-      header h1 { font-size: 2rem; }
+    .dev {
+      opacity: 0.7;
+    }
+
+    @media (max-width: 700px) {
+      .features { grid-template-columns: 1fr; max-width: 340px; }
+      .btn-watch { width: 100%; max-width: 300px; }
     }
   </style>
 </head>
 <body>
+  <div class="page">
+    <header>
+      <a class="logo" href="#">
+        <div class="logo-icon">🎤</div>
+        <div class="logo-text">
+          <strong>TELEPROMPTER PRO</strong>
+          <span>Palco · Live · Estúdio</span>
+        </div>
+      </a>
+      <div class="badge">Apresentação Comercial</div>
+    </header>
 
-  <header>
-    <h1>Teleprompter Pro</h1>
-    <p>Grave vídeos com segurança e naturalidade, lendo seu texto sem perder o contato com a câmera.</p>
-  </header>
-
-  <div class="hero">
-    <img src="teleprompter-hero.png" alt="Teleprompter Pro">
-  </div>
-
-  <section class="video-box">
-    <h2>Veja a apresentação</h2>
-    <video
-      controls
-      controlsList="nodownload noplaybackrate"
-      disablePictureInPicture
-      playsinline
-      preload="metadata"
-      poster="teleprompter-hero.png"
-      oncontextmenu="return false;">
-      <source src="apresentacao-teleprompter.mp4" type="video/mp4">
-      Seu navegador não suporta a reprodução de vídeo.
-    </video>
-  </section>
-
-  <section>
-    <h2>Vantagens</h2>
-    <div class="features">
-      <div class="card">
-        <h3>Fácil de usar</h3>
-        <p>Cole seu texto e comece a gravar em segundos.</p>
-      </div>
-      <div class="card">
-        <h3>Velocidade ajustável</h3>
-        <p>Controle o ritmo da leitura do jeito que preferir.</p>
-      </div>
-      <div class="card">
-        <h3>Aparência profissional</h3>
-        <p>Vídeos mais naturais, claros e com mais credibilidade.</p>
+    <div class="hero">
+      <div class="hero-frame">
+        <img
+          src="teleprompter-hero.png"
+          alt="TELEPROMPTER PRO"
+          width="1840"
+          height="980"
+        />
       </div>
     </div>
-  </section>
 
-  <section>
-    <h2>Quer adquirir?</h2>
-    <a class="btn" href="https://wa.me/5511987032116?text=Ol%C3%A1!%20Quero%20saber%20mais%20sobre%20o%20Teleprompter%20Pro" target="_blank">
-      Falar no WhatsApp
-    </a>
-  </section>
+    <section class="cta-section">
+      <h1>Conheça o Teleprompter Pro</h1>
+      <p>
+        Solução completa para artistas, apresentadores e equipes de produção.
+        Clique no botão abaixo para assistir a apresentação.
+      </p>
 
-  <footer>
-    © 2025 Teleprompter Pro. Todos os direitos reservados.
-  </footer>
+      <button class="btn-watch" id="btnPlay" type="button">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+        Assistir Apresentação
+      </button>
+    </section>
 
+    <!-- PLAYER EMBUTIDO — abre na página, sem opção de baixar ou ver no GitHub -->
+    <div class="video-wrap" id="videoWrap">
+      <video
+        id="player"
+        controls
+        controlsList="nodownload noplaybackrate"
+        disablePictureInPicture
+        oncontextmenu="return false;"
+        playsinline
+        preload="metadata"
+        poster="teleprompter-hero.png"
+      >
+        <source
+          src="Apresenta%C3%A7%C3%A3o%20Teleprompter.mp4"
+          type="video/mp4"
+        />
+        Seu navegador não suporta vídeo HTML5.
+      </video>
+    </div>
+
+    <div class="features">
+      <div class="feature">
+        <div class="feature-icon">♪</div>
+        <h3>Organização de Repertório</h3>
+        <p>Setlist arrastável, importação de DOC/DOCX/TXT e backup completo.</p>
+      </div>
+      <div class="feature">
+        <div class="feature-icon">⏱</div>
+        <h3>Timing e Leitura Perfeitos</h3>
+        <p>Velocidade ajustável, fonte grande e timer profissional.</p>
+      </div>
+      <div class="feature">
+        <div class="feature-icon">🔒</div>
+        <h3>Confiança no Palco</h3>
+        <p>Modo Palco limpo, borda de segurança e tela sempre ligada.</p>
+      </div>
+    </div>
+
+    <footer>
+      <div class="dev">
+        Desenvolvido por <strong>A2L Designer</strong>
+      </div>
+    </footer>
+  </div>
+
+  <script>
+    const btn = document.getElementById("btnPlay");
+    const wrap = document.getElementById("videoWrap");
+    const player = document.getElementById("player");
+
+    btn.addEventListener("click", () => {
+      wrap.classList.add("active");
+      // Tenta tocar automaticamente
+      player.play().catch(() => {
+        // Alguns navegadores bloqueiam autoplay — o usuário clica no play do player
+      });
+      // Rola até o vídeo
+      wrap.scrollIntoView({ behavior: "smooth", block: "center" });
+    });
+  </script>
 </body>
 </html>
